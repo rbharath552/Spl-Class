@@ -1,0 +1,47 @@
+
+<html>
+<head>
+    <title>Student Grade System</title>
+</head>
+<body>
+
+    <h2>Student Grade System</h2>
+
+    <form id="gradeForm">
+        <label>Student Name:</label><br>
+        <input type="text" id="studentName" required><br><br>
+
+        <label>Mark:</label><br>
+        <input type="number" id="mark" required><br><br>
+
+        <button type="submit">Get Result</button>
+    </form>
+
+    <h3 id="result"></h3>
+
+    <script>
+        document.getElementById("gradeForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById("studentName").value;
+            const mark = Number(document.getElementById("mark").value);
+
+            let grade;
+
+            if (mark >= 90) {
+                grade = "A";
+            } else if (mark >= 75) {
+                grade = "B";
+            } else if (mark >= 50) {
+                grade = "C";
+            } else {
+                grade = "Fail";
+            }
+
+            document.getElementById("result").textContent =
+                `Student: ${name} | Mark: ${mark} | Grade: ${grade}`;
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo Task Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        input {
+            padding: 8px;
+            width: 250px;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin-left: 5px;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        .delete-btn {
+            margin-left: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #emptyMessage {
+            color: gray;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Todo Task Counter</h2>
+
+    <input type="text" id="taskInput" placeholder="Enter a task">
+    <button onclick="addTask()">Add Task</button>
+
+    <h3>Task List</h3>
+    <p id="emptyMessage">No Tasks Available</p>
+
+    <ul id="taskList"></ul>
+
+    <h3>Total Tasks: <span id="taskCount">0</span></h3>
+
+    <script>
+        const taskList = document.getElementById("taskList");
+        const taskCount = document.getElementById("taskCount");
+        const emptyMessage = document.getElementById("emptyMessage");
+
+        function addTask() {
+            const taskInput = document.getElementById("taskInput");
+            const taskText = taskInput.value.trim();
+
+            if (taskText === "") {
+                alert("Please enter a task");
+                return;
+            }
+
+            const li = document.createElement("li");
+            li.textContent = taskText;
+
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "Delete";
+            deleteBtn.className = "delete-btn";
+
+            deleteBtn.onclick = function () {
+                li.remove();
+                updateTaskCount();
+            };
+
+            li.appendChild(deleteBtn);
+            taskList.appendChild(li);
+
+            taskInput.value = "";
+            updateTaskCount();
+        }
+
+        function updateTaskCount() {
+            const totalTasks = taskList.children.length;
+
+            taskCount.textContent = totalTasks;
+
+            if (totalTasks === 0) {
+                emptyMessage.style.display = "block";
+            } else {
+                emptyMessage.style.display = "none";
+            }
+        }
+
+        updateTaskCount();
+    </script>
+
+</body>
+</html>

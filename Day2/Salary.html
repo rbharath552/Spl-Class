@@ -1,0 +1,51 @@
+
+<html>
+<head>
+    <title>Employee Salary Bonus</title>
+</head>
+<body>
+
+    <h2>Employee Salary Bonus Calculator</h2>
+
+    <form id="salaryForm">
+        <label>Employee Name:</label><br>
+        <input type="text" id="employeeName" required><br><br>
+
+        <label>Salary:</label><br>
+        <input type="number" id="salary" required><br><br>
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    <h3 id="result"></h3>
+
+    <script>
+        document.getElementById("salaryForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const employeeName = document.getElementById("employeeName").value;
+            const salary = Number(document.getElementById("salary").value);
+
+            let bonus;
+
+            if (salary > 30000) {
+                bonus = 5000;
+            } else if (salary > 20000) {
+                bonus = 3000;
+            } else {
+                bonus = 1000;
+            }
+
+            const finalSalary = salary + bonus;
+
+            document.getElementById("result").innerHTML = `
+                Employee Name: ${employeeName} <br>
+                Salary: ₹${salary} <br>
+                Bonus: ₹${bonus} <br>
+                Final Salary: ₹${finalSalary}
+            `;
+        });
+    </script>
+
+</body>
+</html>
