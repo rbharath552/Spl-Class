@@ -4,7 +4,8 @@ import mongoose from "mongoose";
 
 const authSchema = new mongoose.Schema({
     username:String,
-    email:{type:String,unique:true},
+    userage:Number,
+     email:{type:String,unique:true},
     password:String
 },{timestamps:true})
 
